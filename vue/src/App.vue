@@ -1,13 +1,5 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
-import {mapStatte} from 'vuex'
-
-
-export default {
-  computed: {
-    ...mapState(['user'])
-  }
-}
 </script>
 
 <template>
