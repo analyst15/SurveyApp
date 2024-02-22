@@ -21,7 +21,7 @@ const routes = [
     }
 ];
 
-const router = createRouter( options, {
+const router = createRouter({
     history: createWebHistory(),
     routes
 })
