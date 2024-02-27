@@ -10,6 +10,7 @@ const routes = [
         path: '/',
         redirect: '/dashboard',
         component: DefaultLayout,
+        meta: {requiresAuth: true},
         children: [
             {path: '/dashboard', name: 'Dashboard', component: Dashboard},
             {path: '/surveys', name: 'Surveys', component: Surveys}
@@ -30,6 +31,14 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(),
     routes
+})
+
+router.beforeEach((to, from, next) => {
+    if(to.meta.requiresAuth && !store.state.user.token){
+        next({name: 'Login'})
+    }else{
+        next();
+    }
 })
 
 export default router

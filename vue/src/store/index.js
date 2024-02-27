@@ -3,7 +3,7 @@ import {createStore} from "vuex";
 const store = createStore(options, {
     state: {
         user: {
-            date: {name: 'Zura'},
+            date: {},
             token: null
         }
     },
