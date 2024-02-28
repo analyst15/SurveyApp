@@ -1,10 +1,10 @@
 import {createStore} from "vuex";
 
-const store = createStore(options, {
+const store = createStore({
     state: {
         user: {
-            date: {},
-            token: null
+            data: {},
+            token: 123
         }
     },
     getters: {},

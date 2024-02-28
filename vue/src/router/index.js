@@ -4,6 +4,8 @@ import Surveys from '../views/Surveys.vue';
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import DefaultLayout from '../components/DefaultLayout.vue'
+import AuthLayout from '../components/AuthLayout.vue'
+import store from '../store'
 
 const routes = [
     {
@@ -17,15 +19,24 @@ const routes = [
         ]
     },
     {
-        path: '/login',
-        name: 'Login',
-        component: Login
+        path: '/auth',
+        redirect: '/login',
+        name: 'Auth',
+        component: AuthLayout,
+        meta: {isGuest: true},
+        children: [
+            {
+                path: '/login',
+                name: 'Login',
+                component: Login
+            },
+            {
+                path: '/register',
+                name: 'Register',
+                component: Register
+            }
+        ]
     },
-    {
-        path: '/register',
-        name: 'Register',
-        component: Register
-    }
 ];
 
 const router = createRouter({
@@ -33,9 +44,11 @@ const router = createRouter({
     routes
 })
 
-router.beforeEach((to, from, next) => {
-    if(to.meta.requiresAuth && !store.state.user.token){
+router.beforeEach((to, from, next) => {                                  ///navigation guard It checks if the route being navigated to (to) requires authentication (to.meta.requiresAuth) and whether the user is authenticated (store.state.user.token). If the route requires authentication and the user is not authenticated, it redirects the user to the login page ({name: 'Login'}). Otherwise, it allows the navigation to proceed (next()).
+    if(to.meta.requiresAuth && !store.state.user.token) {       
         next({name: 'Login'})
+    }else if(store.state.user.token && (to.meta.isGuest)){
+        next({name: 'Dashboard'})
     }else{
         next();
     }
