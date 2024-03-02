@@ -23,11 +23,6 @@
           </div>
           <div class="hidden md:block">
             <div class="ml-4 flex items-center md:ml-6">
-              <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                <span class="absolute -inset-1.5" />
-                <span class="sr-only">View notifications</span>
-                <BellIcon class="h-6 w-6" aria-hidden="true" />
-              </button>
 
               <!-- Profile dropdown -->
               <Menu as="div" class="relative ml-3">
@@ -41,7 +36,7 @@
                 <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
                   <MenuItems class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <MenuItem v-slot="{ active }">
-                      <a @click="logout" :class="['block px-4 py-2 text-sm text-gray-700']">Sign Out</a>
+                      <a @click="logout" :class="['block px-4 py-2 text-sm text-gray-700 cursor-pointer']">Sign Out</a>
                     </MenuItem>
                   </MenuItems>
                 </transition>
@@ -73,14 +68,9 @@
               <div class="text-base font-medium leading-none text-white">{{ user.name }}</div>
               <div class="text-sm font-medium leading-none text-gray-400">{{ user.email }}</div>
             </div>
-            <button type="button" class="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-              <span class="absolute -inset-1.5" />
-              <span class="sr-only">View notifications</span>
-              <BellIcon class="h-6 w-6" aria-hidden="true" />
-            </button>
           </div>
           <div class="mt-3 space-y-1 px-2">
-            <DisclosureButton :key="item.name" as="a" @click="logout" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign Out</DisclosureButton>
+            <DisclosureButton as="a" @click="logout" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white cursor-pointer">Sign Out</DisclosureButton>
           </div>
         </div>
       </DisclosurePanel>
