@@ -62,7 +62,7 @@
 
       <DisclosurePanel class="md:hidden">
         <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-          <DisclosureButton v-for="item in navigation" :key="item.name" as="a" :href="item.href" :class="[item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'block rounded-md px-3 py-2 text-base font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</DisclosureButton>
+          <router-link v-for="item in navigation" :key="item.name" :to="item.to" active-class="bg-gray-900 text-white" :class="[this.$route.name === item.to.name ? '' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'block rounded-md px-3 py-2 text-base font-medium']">{{ item.name }}</router-link>
         </div>
         <div class="border-t border-gray-700 pb-3 pt-4">
           <div class="flex items-center px-5">
@@ -92,23 +92,40 @@
 <script setup>
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
+import { useStore } from 'vuex'
+import { computed } from 'vue'
 
 const user = {
   name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+                email: 'tom@example.com',
+                imageUrl:
+                  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+              
+            
 }
+
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
-  { name: 'Reports', href: '#', current: false },
+  { name: 'Dashboard', to: {name: "Dashboard"}},
+  { name: 'Surveys', ro: {name: "Surveys"}},
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
   { name: 'Settings', href: '#' },
   { name: 'Sign out', href: '#' },
 ]
+
+/* 
+
+  setup() {
+    const store = useStore();
+
+    return{
+      user: computed(() => store.state.user.data),
+      navigation,
+      userNavigation,
+    };
+  }
+
+*/
+
 </script>
