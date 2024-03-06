@@ -99,7 +99,7 @@ const navigation = [
   { name: 'Surveys', to: {name: "Surveys"}},
 ]
 
-/* 
+
 
   setup() {
     const store = useStore();
@@ -111,6 +111,6 @@ const navigation = [
     };
   }
 
-*/
+
 
 </script>
